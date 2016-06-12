@@ -15,6 +15,7 @@ import view.View;
  * @author metal
  *
  */
+
 public class ViewTest {
 	@Test
 	public void TitleTest() throws Exception {

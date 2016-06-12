@@ -1,6 +1,5 @@
 package modelTest;
 
-import model.Bullet;
 import model.Coord;
 
 import static org.junit.Assert.*;

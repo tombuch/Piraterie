@@ -10,7 +10,7 @@ public abstract class Components extends Coord{
 	 */
 	protected InputStream file;
 	/**
-	 * Coordonn�es du vecteur vitesse de chaque component
+	 * Coordonnees du vecteur vitesse de chaque component
 	 */
 	protected Coord vitesse;
 	protected boolean marq = false;
@@ -22,7 +22,7 @@ public abstract class Components extends Coord{
 	public abstract void tick(LinkedList<Components> list);
 	
 	/**
-	 * getter de marq
+	 * getter de marque
 	 * @return la valeur de marq
 	 */
 	public boolean getmarq() {
@@ -31,7 +31,7 @@ public abstract class Components extends Coord{
 	
 	/**
 	 * Setter de l'attribut vitesse
-	 * @param vitesse correspond aux nouvelles coordonn�es de l'attribut vitesse
+	 * @param vitesse correspond aux nouvelles coordonnees de l'attribut vitesse
 	 */
 	public void setVitesse(Coord vitesse){
 		this.vitesse = vitesse;
