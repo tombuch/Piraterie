@@ -26,7 +26,7 @@ public class World extends Observable{
 	private InputStream file;
 	private InputStream boatPlayer;
 	private Long time = System.nanoTime();
-
+	private int i = 0;
 	public World() {
 		this.factory = new Factory();
 		this.list = new LinkedList<>();
@@ -82,8 +82,17 @@ public class World extends Observable{
 	public void notifyView(){
 		if ((System.nanoTime() - this.time) > 1000000000/120){
 			this.time = System.nanoTime();
+			this.moveObj();
 			this.setChanged();
 			this.notifyObservers();
+		}
+	}
+	
+	public void moveObj() {
+		i = i + 1;
+		for (Components l : this.list)
+		{
+			l.setX(l.getX() + 1);
 		}
 	}
 

@@ -27,7 +27,6 @@ public class Zepplin extends Components {
 					if ((bullet.getRayon()+this.diago) < (bullet.distance(new Coord(x+size.getX()/2, y-size.getY()/2))))
 						return;
 					else{
-						System.out.println("colisston");
 						marq = true;
 						bullet.marq = true;
 						World.abletofire = true;

@@ -4,3 +4,17 @@ Boat;1000;120
 2
 Zepplin;700;600
 Zepplin;1000;450
+3
+Boat;700;150
+Zepplin;700;600
+4
+Boat;700;150
+Zepplin;500;600
+Boat;1000;120
+Boat;500;120
+5
+Boat;700;150
+Zepplin;800;600
+Boat;1000;120
+Boat;500;120
+Zepplin;500;600
