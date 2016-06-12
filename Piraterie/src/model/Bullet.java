@@ -32,7 +32,7 @@ public class Bullet extends Components{
 		this.y = ((-0.5) * World.G * Math.pow(currenttime, 2)+ vitesse.y*currenttime) + this.y;
 		if (this.y < -1 || this. x >1500)
 		{
-			list.remove(this);
+			this.marq = true;
 			World.abletofire = true;
 		}
 	}

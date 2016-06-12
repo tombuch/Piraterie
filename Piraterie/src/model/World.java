@@ -42,61 +42,56 @@ public class World extends Observable{
 	public void run() throws IOException{
 		InputStream lvl= ClassLoader.getSystemResourceAsStream("level.txt");
 		BufferedReader line = new BufferedReader(new InputStreamReader(lvl,StandardCharsets.UTF_8));
-	
-		this.game = initlvl(line);
+
+		//		this.game = initlvl(line);
 		while (this.game == true){
-//			this.game = initlvl(line);
-			this.notifyView();
-		
-			for (Components components : list) {
-				components.tick(this.list);
-			}
-			Iterator<Components> i = list.iterator();
-			while (i.hasNext()){
-				Components c = i.next();
-				if (c instanceof Boat) {
-					Boat boat = (Boat)c;
-					if (boat.getmarq()){
-						list.remove(boat);
-						i = list.iterator();
-					}
-					
+			this.game = initlvl(line);
+			while(!this.list.isEmpty()){
+				this.runlvl();
+				this.notifyView();
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
-			}
-			
-			System.out.println(list);
-			
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
 		}
 	}
 
 	public void runlvl(){
+		for (Components components : list) {
+			components.tick(this.list);
+		}
 		
-		
-		
+		// remove les components marque
+		Iterator<Components> i = list.iterator();
+		while (i.hasNext()){
+			Components c = i.next();
+			if (c.getmarq()){
+				this.list.remove(c);
+				i = list.iterator();
+			}
+		}
 	}
-	
+
+
 	// notify la vue 60 fois par seconde
 	/**
-	 * Méthode permettant de notifier la vue de tout changement, 60 fois par secondes
+	 * Mï¿½thode permettant de notifier la vue de tout changement, 60 fois par secondes
 	 */
 	public void notifyView(){
-		if ((System.nanoTime() - this.time) > 1000000000/60){
+		if ((System.nanoTime() - this.time) > 1000000000/120){
 			this.time = System.nanoTime();
 			this.setChanged();
 			this.notifyObservers();
 		}
 	}
-	
+
 	// read file level.txt and create lvl with the content
 	/**
-	 * Méthode qui lit le fichier level.txt et crée le niveau avec les éléments du fichier
-	 * @param line paramètre permettant de lire
-	 * @return true si le lvl est crée, false si il ne l'est pas
+	 * Mï¿½thode qui lit le fichier level.txt et crï¿½e le niveau avec les ï¿½lï¿½ments du fichier
+	 * @param line paramï¿½tre permettant de lire
+	 * @return true si le lvl est crï¿½e, false si il ne l'est pas
 	 */
 	public boolean initlvl(BufferedReader line){
 		String toCreate;

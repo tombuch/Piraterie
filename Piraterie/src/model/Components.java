@@ -10,9 +10,10 @@ public abstract class Components extends Coord{
 	 */
 	protected InputStream file;
 	/**
-	 * Coordonnées du vecteur vitesse de chaque component
+	 * Coordonnï¿½es du vecteur vitesse de chaque component
 	 */
 	protected Coord vitesse;
+	protected boolean marq = false;
 	
 	public Components(double x, double y) {
 		super(x, y);
@@ -21,8 +22,16 @@ public abstract class Components extends Coord{
 	public abstract void tick(LinkedList<Components> list);
 	
 	/**
+	 * getter de marq
+	 * @return la valeur de marq
+	 */
+	public boolean getmarq() {
+		return marq;
+	}
+	
+	/**
 	 * Setter de l'attribut vitesse
-	 * @param vitesse correspond aux nouvelles coordonnées de l'attribut vitesse
+	 * @param vitesse correspond aux nouvelles coordonnï¿½es de l'attribut vitesse
 	 */
 	public void setVitesse(Coord vitesse){
 		this.vitesse = vitesse;

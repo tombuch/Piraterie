@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -18,25 +19,27 @@ import model.Boat;
 import model.Bullet;
 import model.Components;
 import model.Coord;
+import model.Zepplin;
 
 // Jpanel pour le background , L'ihm et les objets
 
 @SuppressWarnings("serial")
 public class JPanelBackground extends JPanel {
-	
+
 	private Image background;
 	private Image boatPlayer;
 	private Image boatbot;
 	private Image bullet;
+	private Image zepplin;
 	private LinkedList<Components> list;
 	private JSlider hauteur = new JSlider();
 	private JSlider longeur = new JSlider();
 	private JButton launch = new JButton();
-	
+
 	public JPanelBackground(Controler c) {
 		super();	
 		this.setLayout(null);
-		
+
 		//initialisation du bouton pour tirer
 		launch.setLocation(150, 640);
 		launch.setText("Tirer");
@@ -49,7 +52,7 @@ public class JPanelBackground extends JPanel {
 		launch.setSize(64,24);
 		launch.setVisible(true);
 		this.add(launch);
-		
+
 		//initialisation du slider pour la hauteur du vecteur
 		hauteur.setMaximum(90);
 		hauteur.setMinimum(0);
@@ -61,7 +64,7 @@ public class JPanelBackground extends JPanel {
 		hauteur.setMinorTickSpacing(1);
 		hauteur.setPaintTicks(true);
 		this.add(hauteur);
-		
+
 		//initialisation du slider pour le longeur du victeur
 		longeur.setMaximum(90);
 		longeur.setMinimum(0);
@@ -72,7 +75,7 @@ public class JPanelBackground extends JPanel {
 		longeur.setMinorTickSpacing(1);
 		longeur.setPaintTicks(true);
 		this.add(longeur);
-		
+
 	}
 	/**
 	 * Charge l'image depuis la source
@@ -101,7 +104,7 @@ public class JPanelBackground extends JPanel {
 	public void setBackground(InputStream file){
 		this.background = this.LoadImage(file, this.background);
 	}
-	
+
 	/**
 	 * Setter de boatPlayer
 	 * @param file nouveau boatPlayer
@@ -109,13 +112,17 @@ public class JPanelBackground extends JPanel {
 	public void setBoatPlayer(InputStream file){
 		this.boatPlayer = this.LoadImage(file, boatPlayer);
 	}
-	
+
 	/**
 	 * Setter de boatBot
 	 * @param file nouveau boatBot
 	 */
 	public void setBoatbot(InputStream file){
 		this.boatbot = this.LoadImage(file, boatbot);
+	}
+
+	public void setZepplin(InputStream file){
+		this.zepplin = this.LoadImage(file, zepplin);
 	}
 
 	/**
@@ -125,7 +132,7 @@ public class JPanelBackground extends JPanel {
 	public void setbullet(InputStream file){
 		this.bullet = this.LoadImage(file, bullet);
 	}
-	
+
 	/**
 	 * Setter de list
 	 * @param list nouveau list
@@ -133,9 +140,9 @@ public class JPanelBackground extends JPanel {
 	public void setList(LinkedList<Components> list){
 		this.list = list;
 	}
-	
+
 	/**
-	 * Méthode permettant de redessiner l'image
+	 * Mï¿½thode permettant de redessiner l'image
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -143,18 +150,23 @@ public class JPanelBackground extends JPanel {
 			g.drawImage(background, 0, 0, null);
 		if (boatPlayer != null)
 			g.drawImage(boatPlayer, 40, 510, null);
+		g.setColor(Color.RED);
 		if (list != null){
-		for (Components components : list) {
-			if (components instanceof Boat) {
-				this.setBoatbot(components.getImage());
-				g.drawImage(this.boatbot, (int)components.getX(), this.getHeight() - (int)components.getY(), null);
+			for (Components components : list) {
+				if (components instanceof Boat) {
+					this.setBoatbot(components.getImage());
+					g.drawImage(this.boatbot, (int)components.getX(), this.getHeight() - (int)components.getY(), null);
+				}
+				if (components instanceof Bullet) {
+					this.setbullet(components.getImage());
+					g.drawImage(bullet, (int)(components.getX()-(0.5*bullet.getWidth(null))), this.getHeight() - (int)(components.getY()-(0.5*bullet.getHeight(null))), null);
+				}
+					if (components instanceof Zepplin) {
+					this.setZepplin(components.getImage());
+					g.drawImage(this.zepplin, (int)components.getX(), this.getHeight() - (int)components.getY(), null);
+				}
 			}
-			if (components instanceof Bullet) {
-				this.setbullet(components.getImage());
-				g.drawImage(bullet, (int)(components.getX()-(0.5*bullet.getWidth(null))), this.getHeight() - (int)(components.getY()-(0.5*bullet.getHeight(null))), null);
-			}
-			}
-		this.list = null;
+			this.list = null;
 		}
 	}
 }
