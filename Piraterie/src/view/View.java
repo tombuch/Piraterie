@@ -31,7 +31,7 @@ public class View extends JFrame implements Observer{
 		this.controler = c;
 		try {
 			// initialise la fenêtre
-			this.setTitle("AngryBird");
+			this.setTitle("Piraterie");
 			this.setPreferredSize(new Dimension(1280, 720));
 			this.setSize(new Dimension(1280, 720));
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);

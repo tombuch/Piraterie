@@ -7,6 +7,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Test sur les coordonnes x et y
+ * @author metal
+ *
+ */
+
 public class CoordTest {
 	
 	@Test
