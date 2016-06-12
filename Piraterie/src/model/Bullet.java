@@ -3,17 +3,25 @@ package model;
 import java.util.LinkedList;
 
 public class Bullet extends Components{
-
+	
+	/**
+	 * Attribut rayon du bullet
+	 */
 	private double rayon = new Coord(0, 0).distance(new Coord(20, 18));
 	private long time = 0;
 	
-	
+	/**
+	 * Constructeur permettant d'initialiser les variables x et y et de load l'image du bullet
+	 * @param x initalise la variable x du component
+	 * @param y initialise la variable y du component
+	 */
 	public Bullet(double x, double y) {
 		super(x, y);
 		this.file = ClassLoader.getSystemResourceAsStream("boulet.png");
 	}
 
 
+	
 	@Override
 	public void tick(LinkedList<Components> list) {
 		if (time == 0)

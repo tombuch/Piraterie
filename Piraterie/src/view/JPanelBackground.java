@@ -74,7 +74,12 @@ public class JPanelBackground extends JPanel {
 		this.add(longeur);
 		
 	}
-	
+	/**
+	 * Charge l'image depuis la source
+	 * @param file source de l'image
+	 * @param img image qui va contenir la source
+	 * @return la nouvelle image contenant le file
+	 */
 	//charge l'image depuis la source
 	public Image LoadImage(InputStream file, Image img) {
 		try {
@@ -88,27 +93,50 @@ public class JPanelBackground extends JPanel {
 		}
 		return img;
 	}
-	
+
+	/**
+	 * Setter de Background
+	 * @param file nouveau background
+	 */
 	public void setBackground(InputStream file){
 		this.background = this.LoadImage(file, this.background);
 	}
 	
+	/**
+	 * Setter de boatPlayer
+	 * @param file nouveau boatPlayer
+	 */
 	public void setBoatPlayer(InputStream file){
 		this.boatPlayer = this.LoadImage(file, boatPlayer);
 	}
 	
+	/**
+	 * Setter de boatBot
+	 * @param file nouveau boatBot
+	 */
 	public void setBoatbot(InputStream file){
 		this.boatbot = this.LoadImage(file, boatbot);
 	}
 
+	/**
+	 * Setter de Bullet
+	 * @param file nouveau bullet
+	 */
 	public void setbullet(InputStream file){
 		this.bullet = this.LoadImage(file, bullet);
 	}
 	
+	/**
+	 * Setter de list
+	 * @param list nouveau list
+	 */
 	public void setList(LinkedList<Components> list){
 		this.list = list;
 	}
 	
+	/**
+	 * Méthode permettant de redessiner l'image
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		if (background != null)

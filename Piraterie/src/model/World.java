@@ -35,6 +35,10 @@ public class World extends Observable{
 	}
 
 	//Boucle de jeux
+	/**
+	 * Boucle principale du jeu
+	 * @throws IOException
+	 */
 	public void run() throws IOException{
 		InputStream lvl= ClassLoader.getSystemResourceAsStream("level.txt");
 		BufferedReader line = new BufferedReader(new InputStreamReader(lvl,StandardCharsets.UTF_8));
@@ -77,6 +81,9 @@ public class World extends Observable{
 	}
 	
 	// notify la vue 60 fois par seconde
+	/**
+	 * Méthode permettant de notifier la vue de tout changement, 60 fois par secondes
+	 */
 	public void notifyView(){
 		if ((System.nanoTime() - this.time) > 1000000000/60){
 			this.time = System.nanoTime();
@@ -86,6 +93,11 @@ public class World extends Observable{
 	}
 	
 	// read file level.txt and create lvl with the content
+	/**
+	 * Méthode qui lit le fichier level.txt et crée le niveau avec les éléments du fichier
+	 * @param line paramètre permettant de lire
+	 * @return true si le lvl est crée, false si il ne l'est pas
+	 */
 	public boolean initlvl(BufferedReader line){
 		String toCreate;
 		this.level++;
@@ -107,6 +119,10 @@ public class World extends Observable{
 	}
 
 	//shoot a bullet if possible
+	/**
+	 * Shoot un bullet si c'est possible
+	 * @param vitesse changement de la vitesse pour le bullet
+	 */
 	public void fire(Coord vitesse){
 		if (abletofire == true){
 			Bullet bullet = new Bullet(190, 132);
@@ -116,14 +132,26 @@ public class World extends Observable{
 		}
 	}
 
+	/**
+	 * getter de l'attribut list
+	 * @return list
+	 */
 	public LinkedList<Components> getList(){
 		return this.list;
 	}
 
+	/**
+	 * getter de l'attribut correspondant au background
+	 * @return file
+	 */
 	public InputStream getBackground() {
 		return this.file;
 	}
 
+	/**
+	 * getter de l'attribut boatPlayer
+	 * @return boatPlayer
+	 */
 	public InputStream getBoatPlayer(){
 		return this.boatPlayer;
 	}

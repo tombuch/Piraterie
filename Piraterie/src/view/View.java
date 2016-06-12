@@ -22,7 +22,11 @@ public class View extends JFrame implements Observer{
 	public View(){
 		super();
 	}
-	
+	/**
+	 * Initialise le controler, la fenetre et le JpanelBackground
+	 * @param c Initialise l'attribut controler
+	 * @throws Exception
+	 */
 	public void init(Controler c) throws Exception{
 		this.controler = c;
 		try {
@@ -52,7 +56,11 @@ public class View extends JFrame implements Observer{
 	}
 
 	// Recois les notifications du Model 
+	
 	@Override
+	/**
+	 * Reçois les notifications du Model
+	 */
 	public void update(Observable o, Object arg) {
 		if (o instanceof World) {
 			World world = (World) o;
